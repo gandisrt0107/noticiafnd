@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <title>NOTICIA</title>
+
+</head>
+
+<body
+    class=" flex flex-col justify-between item-center p-8 min-h-screen bg-gradient-to-r from-yellow-400 to-orange-500 text-black-800 md:flex-row">
+    <main class="bg-white p-16 rounded-lg">
+        <h1 class="text-4xl font-bold mb-8">News On Detection </h1>
+        <br> Website pendeteksi berita palsu/hoax di sektor Ekonomi.<br>
+
+        <form action="{{ url_for('predict')}}" method="POST" class="flex flex-col">
+
+            <label for="Kutipan Berita" class="text-4xl font-bold mb-4">Kutipan Berita</label>
+            <input type="text" name="kutipan_berita" placeholder="Masukkan berita" required="required"
+                class="p-4 bg-gray-100 rounded-md" />
+
+            <button type="submit"
+                class="flex justify-center align-center mt-8 p-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-md">
+                HASIL DETECTION
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-arrow-right ml-4">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </form>
+    </main>
+    <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+        <div class="bg-white p-16 rounded-lg">
+            <!--<h1 class="text-2xl font-bold">{{prediction}}</h1>-->
+            <h3>
+                News :
+                <p>{{news}}</p>
+                <br>
+                Hasil Prediksi:
+                <ul>
+                    {% if predictions is defined %}
+                    <li>Prediksi LR : {{ 'Fake News' if predictions['LR'] == 0 else 'Bukan Fake News'}}</li>
+                    <li>Prediksi DT : {{ 'Fake News' if predictions['DT'] == 0 else 'Bukan Fake News'}}</li>
+                    <li>Prediksi GBC : {{ 'Fake News' if predictions['GBC'] == 0 else 'Bukan Fake News'}}</li>
+                    <li>Prediksi RFC : {{ 'Fake News' if predictions['RFC'] == 0 else 'Bukan Fake News'}}</li>
+                    {% endif %}
+                </ul>
+            </h3>
+        </div>
+
+        <div class="container-around bg-white p-10 rounded-lg mt-10">
+            <h1 class="text-1xl font-bold">
+                <p>
+                    <left>Informasi:
+                </p>
+
+                <h2 class="text-1xl font-times new romans">
+
+                    <br>Saring sebelum Sharing dan gunakan smartphone dengan bijak, orang bijak tak percaya hoax!</br>
+
+        </div>
+</body>
+
+</html>
