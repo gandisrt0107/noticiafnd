@@ -10,8 +10,7 @@
 
 </head>
 
-<body
-    class=" flex flex-col justify-between item-center p-8 min-h-screen bg-gradient-to-r from-yellow-400 to-orange-500 text-black-800 md:flex-row">
+<body class=" flex flex-col justify-between item-center p-8 min-h-screen bg-gradient-to-r from-yellow-400 to-orange-500 text-black-800 md:flex-row">
     <main class="bg-white p-16 rounded-lg">
         <h1 class="text-4xl font-bold mb-8">News On Detection </h1>
         <br> Website pendeteksi berita palsu/hoax di sektor Ekonomi.<br>
@@ -19,11 +18,9 @@
         <form action="{{ url_for('predict')}}" method="POST" class="flex flex-col">
 
             <label for="Kutipan Berita" class="text-4xl font-bold mb-4">Kutipan Berita</label>
-            <input type="text" name="kutipan_berita" placeholder="Masukkan berita" required="required"
-                class="p-4 bg-gray-100 rounded-md" />
+            <input type="text" name="kutipan_berita" placeholder="Masukkan berita" required="required" class="p-4 bg-gray-100 rounded-md" />
 
-            <button type="submit"
-                class="flex justify-center align-center mt-8 p-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-md">
+            <button type="submit" class="flex justify-center align-center mt-8 p-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-md">
                 HASIL DETECTION
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -40,14 +37,10 @@
             <h3>
                 News :
                 <p>{{news}}</p>
-                <br>
-                Hasil Prediksi:
+                <br> Hasil Prediksi:
                 <ul>
                     {% if predictions is defined %}
-                    <li>Prediksi LR : {{ 'Fake News' if predictions['LR'] == 0 else 'Bukan Fake News'}}</li>
-                    <li>Prediksi DT : {{ 'Fake News' if predictions['DT'] == 0 else 'Bukan Fake News'}}</li>
-                    <li>Prediksi GBC : {{ 'Fake News' if predictions['GBC'] == 0 else 'Bukan Fake News'}}</li>
-                    <li>Prediksi RFC : {{ 'Fake News' if predictions['RFC'] == 0 else 'Bukan Fake News'}}</li>
+                    <li>{{ 'Fake News' if predictions['LR'] == 0 else 'Bukan Fake News'}}</li>
                     {% endif %}
                 </ul>
             </h3>
